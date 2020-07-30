@@ -1707,6 +1707,11 @@
   dependencies:
     "@types/node" "*"
 
+"@types/dotenv-parse-variables@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@types/dotenv-parse-variables/-/dotenv-parse-variables-0.2.0.tgz#51c88f6dd25dcb2c537c4fbb78030ab5a84d7990"
+  integrity sha512-cXcRY5lFectjMEGkUsVpRhPCO5xAR9AdzxUBQJrWouQH+nPABZ5R8iZeGGDXRHrzQmFK9P/DrYb3VgQTyAMVsA==
+
 "@types/eslint-visitor-keys@^1.0.0":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@types/eslint-visitor-keys/-/eslint-visitor-keys-1.0.0.tgz#1ee30d79544ca84d68d4b3cdb0af4f205663dd2d"

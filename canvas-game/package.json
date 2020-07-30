@@ -13,8 +13,6 @@
     "@grpc/proto-loader": "^0.5.4",
     "@hoprnet/hopr-protos": "^0.0.12",
     "@types/text-encoding": "^0.0.35",
-    "dotenv": "^8.2.0",
-    "dotenv-parse-variables": "^0.3.1",
     "google-protobuf": "^3.12.2",
     "grpc-web": "^1.2.0",
     "rimraf": "^3.0.2",
