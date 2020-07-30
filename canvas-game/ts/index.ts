@@ -50,6 +50,7 @@ const start = async () => {
   }
   
   const players: PlayersMap = {};
+  const positions: string[] = [];
   const stream = getMessageStream()
 
   stream
@@ -61,12 +62,13 @@ const start = async () => {
         const message = new Message(res.getPayload_asU8()).toJson()
         const currentPositionElement = document.querySelector('#current-position');
         const currentPosition = currentPositionElement ? currentPositionElement.innerHTML : 'No position';
+        positions.push(currentPosition);
         const moves = players[message.from] || 0;
 
         console.log(`%c ${message.from} sent ${message.text}`,'background: black; color: #fff; font-size: 2em')
 
 
-        switch(message.text) {
+        switch(message.text.trim()) {
           case 'U':
             window.dispatchEvent(new KeyboardEvent('keydown',{'key':'ArrowUp'}));
             break;
@@ -84,7 +86,7 @@ const start = async () => {
         const newPositionElement = document.querySelector('#current-position');
         const newPosition = newPositionElement ? newPositionElement.innerHTML : 'No position';
 
-        if (newPosition != currentPosition) {
+        if (newPosition != currentPosition && !positions.includes(newPosition)) {
           const totalMoves = moves + 1;
           console.log(`%c ${message.from} made a good move! They have done ${totalMoves} so far`, 'background: green; color: #fff; font-size: 2em')
           players[message.from] = totalMoves;
