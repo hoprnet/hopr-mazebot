@@ -1,0 +1,46 @@
+{
+  "name": "@hoprnet/mazebot-client",
+  "version": "1.0.0",
+  "description": "Client SDK for interacting with the HOPR gRPC server",
+  "main": "src/index.js",
+  "scripts": {
+    "prebuild": "tsc",
+    "build": "aegir build",
+    "dev": "microbundle watch",
+    "start": "serve -p 3000"
+  },
+  "dependencies": {
+    "@grpc/proto-loader": "^0.5.4",
+    "@hoprnet/hopr-protos": "^0.0.12",
+    "@types/text-encoding": "^0.0.35",
+    "dotenv": "^8.2.0",
+    "dotenv-parse-variables": "^0.3.1",
+    "google-protobuf": "^3.12.2",
+    "grpc-web": "^1.2.0",
+    "rimraf": "^3.0.2",
+    "serve": "^11.3.2",
+    "text-encoding": "^0.7.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.3",
+    "@types/google-protobuf": "^3.7.2",
+    "@types/jest": "26.0.3",
+    "@types/node": "~12",
+    "@typescript-eslint/eslint-plugin": "3.0.2",
+    "@typescript-eslint/parser": "3.0.2",
+    "aegir": "^25.0.0",
+    "eslint": "7.1.0",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-import": "^2.20.1",
+    "jest": "26.0.1",
+    "prettier": "^2.0.5",
+    "ts-jest": "26.1.0",
+    "ts-loader": "^6.2.1",
+    "ts-node": "^8.6.2",
+    "tsconfig-paths": "^3.9.0",
+    "typescript": "^3.7.4"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

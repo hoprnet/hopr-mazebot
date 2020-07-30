@@ -1,0 +1,39 @@
+version: '3'
+
+services:
+  server:
+    image: gcr.io/hoprassociation/hopr-server
+    restart: always
+    ports:
+      - 50051:50051
+      - 9091:9091
+    networks:
+      - envoy
+    environment:
+      - BOOTSTRAP_SERVERS=/ip4/34.65.237.196/tcp/9091/p2p/16Uiu2HAm1pyd27aNRqx7icG5uDBKNFDwvwaEg2vuAUEtLN1pRa5X,/ip4/34.65.139.63/tcp/9091/p2p/16Uiu2HAmR2va1xavPsYRrpCVnjvcUr1Jqjf9UjywdyPxeZ5Z3eLZ
+    volumes:
+      - /app/db
+
+  client:
+    image: gcr.io/hoprassociation/hopr-mazebot/client
+    build:
+      context: ./canvas-game
+    ports:
+      - 3000:3000
+    environment:
+      - API_URL=server:50051
+    networks:
+      - envoy      
+
+  proxy:
+    image: gcr.io/hoprassociation/hopr-proxy/envoy-server
+    build:
+      context: ./envoy
+    ports:
+      - '8080:8080'
+      - '8001:8001'
+    networks:
+      - envoy
+
+networks:
+  envoy: {}
