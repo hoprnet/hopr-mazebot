@@ -34,12 +34,22 @@ const getMessageStream = (): ClientReadableStream<ListenResponse> => {
   return new ListenPromiseClient(API_URL).listen(new ListenRequest())
 }
 
+type PlayersMap = {
+  [key:string]: number
+}
+
 const start = async () => {
   console.log(`Connecting to ${API_URL}`)
 
   const hoprAddress = await getHoprAddress()
-  console.log(`My HOPR address is ${hoprAddress}`)
+  console.log(`%c My HOPR address is ${hoprAddress}`, 'background: #fff; color: #000; font-size: 2em')
 
+  const botAddressElement = document.querySelector('#hopr-bot-address');
+  if (botAddressElement) {
+    botAddressElement.innerHTML = hoprAddress
+  }
+  
+  const players: PlayersMap = {};
   const stream = getMessageStream()
 
   stream
@@ -49,9 +59,12 @@ const start = async () => {
         res.setPayload(data.getPayload_asU8())
 
         const message = new Message(res.getPayload_asU8()).toJson()
-        console.log(`<- ${message.from}: ${message.text}`)
+        const currentPositionElement = document.querySelector('#current-position');
+        const currentPosition = currentPositionElement ? currentPositionElement.innerHTML : 'No position';
+        const moves = players[message.from] || 0;
 
-        console.log('Message', message.text)
+        console.log(`%c ${message.from} sent ${message.text}`,'background: black; color: #fff; font-size: 2em')
+
 
         switch(message.text) {
           case 'U':
@@ -61,7 +74,6 @@ const start = async () => {
             window.dispatchEvent(new KeyboardEvent('keydown',{'key':'ArrowDown'}));
             break;
           case 'R':
-            console.log('Sending stuff up right')
             window.dispatchEvent(new KeyboardEvent('keydown',{'key':'ArrowRight'}));
             break;
           case 'L':
@@ -69,10 +81,28 @@ const start = async () => {
             break;
         }
 
-        sendMessage(message.from, {
-          from: hoprAddress,
-          text: `: Hello ${generateRandomSentence()}`,
-        })
+        const newPositionElement = document.querySelector('#current-position');
+        const newPosition = newPositionElement ? newPositionElement.innerHTML : 'No position';
+
+        if (newPosition != currentPosition) {
+          const totalMoves = moves + 1;
+          console.log(`%c ${message.from} made a good move! They have done ${totalMoves} so far`, 'background: green; color: #fff; font-size: 2em')
+          players[message.from] = totalMoves;
+
+          sendMessage(message.from, {
+            from: hoprAddress,
+            text: `: That was a good move! You have done ${totalMoves} good moves.`,
+          })
+        } else {
+          console.log(`%c ${message.from} made a bad move! They have done ${moves} so far`, 'background: red; color: #fff; font-size: 2em')
+          sendMessage(message.from, {
+            from: hoprAddress,
+            text: `: Sorry, that was a bad move! You have done ${moves} moves.`,
+          })
+        }     
+
+        console.log(`%c Total Players and Moves: ${JSON.stringify(players)}`, 'background: black; color: #fff; font-size: 2em');
+        
       } catch (err) {
         console.error(err)
       }

@@ -123,7 +123,6 @@ function MazeInput(coordinates, overlay) {
   // Handle arrow keys.
 
   function handleKeydown(e) {
-    console.log('Something was pressed...')
     const key = e.key.replace(/^Arrow/, '');
 
     var directions = {

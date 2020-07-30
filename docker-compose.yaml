@@ -32,6 +32,8 @@ services:
     ports:
       - '8080:8080'
       - '8001:8001'
+    environment:
+      - SERVICE_ADDRESS=server
     networks:
       - envoy
 
