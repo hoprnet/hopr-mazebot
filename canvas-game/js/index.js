@@ -39,7 +39,7 @@ function startNewMaze() {
   // here to make the game get harder over time.
   //
   // in this case, we just pass along the search query
-  getJson('/mazebot/random?maxSize=10' + window.location.search).then(
+  getJson('/mazebot/random?maxSize=10').then(
     function(r) {
       setPhase('playing');
       game.startMaze(r, onSolution);
