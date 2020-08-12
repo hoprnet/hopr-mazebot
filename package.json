@@ -4,14 +4,16 @@
   "description": "Client SDK for interacting with the HOPR gRPC server",
   "main": "src/index.js",
   "scripts": {
-    "prebuild": "tsc",
+    "prebuild": "rimraf src && tsc",
     "build": "aegir build",
-    "dev": "microbundle watch",
+    "dev": "tsc -w",
+    "dev:build": "aegir build",
     "start": "serve -p 3000"
   },
   "dependencies": {
     "@grpc/proto-loader": "^0.5.4",
     "@hoprnet/hopr-protos": "^0.0.12",
+    "@hoprnet/hopr-server": "^0.0.1",
     "@types/text-encoding": "^0.0.35",
     "google-protobuf": "^3.12.2",
     "grpc-web": "^1.2.0",
