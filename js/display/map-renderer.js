@@ -263,8 +263,8 @@ var MapRenderer = function (
 
   // highlight and shado for the endcap circless
   function drawEndcapBackground(highlightOffset, shadowOffset, endcap) {
-    CanvasUtils.drawFilledCircle(mapContext, translate(highlightOffset, endcap.center), coordinates.cellSize() / 2.5, 2, Styles.highlight, Styles.highlight);
-    CanvasUtils.drawFilledCircle(mapContext, translate(shadowOffset, endcap.center), coordinates.cellSize() / 2.5, 2, Styles.shadow, Styles.shadow);
+    //CanvasUtils.drawFilledCircle(mapContext, translate(highlightOffset, endcap.center), coordinates.cellSize() / 2.5, 2, Styles.highlight, Styles.highlight);
+    //CanvasUtils.drawFilledCircle(mapContext, translate(shadowOffset, endcap.center), coordinates.cellSize() / 2.5, 2, Styles.shadow, Styles.shadow);
   }
 
   // the border layer (black)
@@ -292,8 +292,8 @@ var MapRenderer = function (
 
   // Endcaps are circles on the end of walls
   function drawEndcap(endcap) {
-    CanvasUtils.drawFilledCircle(mapContext, endcap.center, coordinates.cellSize() / 2.5, coordinates.cellSize() / 12, 'black', 'white');
-    CanvasUtils.drawFilledCircle(mapContext, endcap.center, coordinates.cellSize() / 3.5, coordinates.cellSize() / 12, 'black', Styles.endcapFill[endcap.colorIndex]);
+    //CanvasUtils.drawFilledCircle(mapContext, endcap.center, coordinates.cellSize() / 2.5, coordinates.cellSize() / 12, 'black', 'white');
+    //CanvasUtils.drawFilledCircle(mapContext, endcap.center, coordinates.cellSize() / 3.5, coordinates.cellSize() / 12, 'black', Styles.endcapFill[endcap.colorIndex]);
   }
 
   // utility functions for translating coordinates for highlight and shadow

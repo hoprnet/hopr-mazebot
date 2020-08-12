@@ -48,8 +48,10 @@ function MazeGame(
   };
 
   function startMaze(maze, onSolution_) {
+    const urlParams = new URLSearchParams(window.location.search);
+    const room = urlParams.get('room') || "No Room";
     moves = [];
-    setMaze(maze);
+    setMaze(maze, room);
     onSolution = onSolution_;
     renderFrame();
   }
@@ -71,7 +73,7 @@ function MazeGame(
   }
 
   // Configure the gmae with a new maze
-  function setMaze(maze) {
+  function setMaze(maze, room) {
     currentMaze = maze;
     currentPosition = maze.startingPosition;
 
@@ -86,6 +88,7 @@ function MazeGame(
     // set the map in the renderer, which will kick off map rendering etc.
     renderer.setMap(maze.map);
     statusBar.setMaze(maze);
+    statusBar.setRoom(room)
 
     // turn input on. We ignore input when there is no game active.
     mazeInput.setHandlers(handleInputCell, handleInputDirection, handleInputZoom);

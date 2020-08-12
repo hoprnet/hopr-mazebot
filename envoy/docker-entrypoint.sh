@@ -2,7 +2,7 @@
 set -e
 
 echo "Generating envoy.yaml config file..."
-cat /tmpl/envoy.yaml.tmpl | envsubst \$SERVICE_ADDRESS > /etc/envoy/envoy.yaml
+cat /app/envoy/envoy.yaml.tmpl | envsubst \$SERVICE_ADDRESS > /app/envoy/envoy.yaml
 
 echo "Starting Envoy..."
-/usr/local/bin/envoy -c /etc/envoy/envoy.yaml
+envoy -c /app/envoy/envoy.yaml

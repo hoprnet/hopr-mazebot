@@ -1,2 +1,8 @@
 *.swp
 .DS_Store
+.cache
+dist
+node_modules
+.idea/
+src/
+package-lock.json
